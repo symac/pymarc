@@ -117,6 +117,11 @@ class Record(Iterator):
         self.__pos += 1 
         return self.fields[self.__pos - 1]
 
+    def set_force_utf8(self, force_utf8):
+        self.force_utf8 = force_utf8
+        if force_utf8:
+            self.leader = self.leader[0:9] + 'a' + self.leader[10:]
+
     def add_field(self, *fields):
         """
         add_field() will add pymarc.Field objects to a Record object.
